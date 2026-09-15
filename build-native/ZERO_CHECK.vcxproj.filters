@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\cspsp source\cspspserver-master\cspspserver-master\build-native\CMakeFiles\bc11a2f8cf532744e0466882fb033480\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DF55E66C-58D8-3EFE-B54A-39301E5C85B4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/cspsp source/cspspserver-master/cspspserver-master/build-native/cmake_install.cmake",
+		"C:/cspsp source/cspspserver-master/cspspserver-master/build-native/CSPSPServer/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

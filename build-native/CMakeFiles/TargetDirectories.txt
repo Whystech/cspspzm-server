@@ -1,0 +1,3 @@
+C:/cspsp source/cspspserver-master/cspspserver-master/build-native/CMakeFiles/ALL_BUILD.dir
+C:/cspsp source/cspspserver-master/cspspserver-master/build-native/CMakeFiles/ZERO_CHECK.dir
+C:/cspsp source/cspspserver-master/cspspserver-master/build-native/CSPSPServer/CMakeFiles/CSPSPServer.dir

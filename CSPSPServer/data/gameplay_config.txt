@@ -1,0 +1,74 @@
+# SERVER-AUTHORITATIVE GAMEPLAY
+# Values use: key = value. Lines beginning with # are comments.
+# Changes are loaded only when the server starts, so restart after editing.
+# Client Options and client data files never overwrite this file. Invalid
+# numeric values are clamped to the ranges described below.
+
+# Armor protection percentage, range 0-100.
+armor_damage_reduction = 30
+
+# PLAYER HEALTH, ARMOR, PICKUPS, ECONOMY AND MOVEMENT
+# *_max_health / *_max_armor are team-specific pickup caps: health 1-32767,
+# armor 0-32767. Spawn values are clamped to their team's corresponding cap.
+# starting_money: cash granted on reset/spawn, range 0-32767.
+# pickup_radius: collection distance in world units, range 1-256.
+# damage_speed_multiplier: movement retained after being hit, range 0.0-1.0.
+# player_acceleration / player_deceleration: speed change per millisecond,
+# range 0.0-1.0. These settings are authoritative for connected players.
+ct_max_health = 100
+t_max_health = 150
+ct_max_armor = 100
+t_max_armor = 100
+ct_spawn_health = 100
+t_spawn_health = 150
+ct_spawn_armor = 0
+t_spawn_armor = 0
+starting_money = 800
+pickup_radius = 16
+damage_speed_multiplier = 0.1
+player_acceleration = 0.0005
+player_deceleration = 0.0005
+
+# BOT POPULATION
+# Requires bots = on in data/config.txt.
+# infected_bot_count: server-owned T/Zombie bots, range 0-maxplayers.
+infected_bot_count = 1
+
+# ct_bot_count: server-owned CT/survivor bots. It is reduced if necessary so
+# infected_bot_count + ct_bot_count never exceeds config.txt maxplayers.
+ct_bot_count = 3
+
+# SERVER BOT BEHAVIOR
+# *_ms values are milliseconds and distance values are world units.
+# decision min/max: random delay between decisions, range 1-60000; maximum is
+# automatically kept at or above minimum.
+# path interval: delay between path updates, range 1-60000.
+# waypoint tolerance: distance accepted as reaching a waypoint, range 1-10000.
+# stop/knife/gun distance: combat thresholds, range 0-10000.
+bot_decision_min_ms = 250
+bot_decision_max_ms = 450
+bot_path_interval_ms = 600
+bot_waypoint_tolerance = 32
+bot_stop_distance = 150
+bot_knife_distance = 55
+bot_gun_distance = 700
+
+# MODE RULES
+# round_freeze_time: seconds before movement at round start, range 0-10.
+round_freeze_time = 3
+
+# infection_respawn_delay: seconds before a CT returns as T, range 0-4.
+infection_respawn_delay = 1
+
+# horde_regroup: inplace keeps survivors where they stand; base returns them
+# to their spawn area between waves. Accepted values: inplace or base.
+horde_regroup = inplace
+
+# horde_wave_delay: regroup/buy time after a cleared wave, range 1-30 seconds.
+horde_wave_delay = 3
+
+# horde_wave_reward: cash awarded after clearing a wave, range 0-32767.
+horde_wave_reward = 3250
+
+# horde_revive_survivors: on revives eliminated CTs after a cleared wave.
+horde_revive_survivors = off

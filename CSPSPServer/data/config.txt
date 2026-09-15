@@ -1,0 +1,19 @@
+name = CSPSP Server
+maptime = 30
+friendlyfire = off
+maxplayers = 10
+bots = off
+roundtime = 180
+buytime = 60
+port = 42692
+autobalance = on
+alltalk = on
+respawntime = 5
+spawngun = 11
+invincibletime = 3
+
+# Allow in-game "admins" to run server commands (/map, /kick, /ban, ...) via chat.
+# WARNING: admin status is based only on the client-supplied account name, which is
+# not authenticated (anyone can claim the admin name). Leave off unless the server
+# is on a trusted/private network.
+allowremoteadmin = off

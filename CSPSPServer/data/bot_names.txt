@@ -1,0 +1,34 @@
+# One server bot display name per line. Maximum 31 characters.
+# Blank lines and lines beginning with # are ignored.
+Alpha
+Bravo
+Charlie
+Delta
+Echo
+Foxtrot
+Ghost
+Hunter
+Iceman
+Jester
+Kilo
+Maverick
+Nomad
+Orion
+Raptor
+Viper
+Atlas
+Bishop
+Cipher
+Dagger
+Falcon
+Gunner
+Havoc
+Kodiak
+Lancer
+Mustang
+Nova
+Ranger
+Saber
+Talon
+Vector
+Warden

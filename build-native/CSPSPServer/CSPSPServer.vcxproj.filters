@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\AStar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\GameServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Grenade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\GunObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\HttpManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Packet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Person.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\ServerBot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\TileMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\UdpManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Vector2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Wlan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\AStar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\GameServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Grenade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Grid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\GunObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\HttpManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Packer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Packet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Person.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\ServerBot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\TileMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\UdpManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Vector2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\Wlan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\cspsp source\cspspserver-master\cspspserver-master\CSPSPServer\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{7635210F-95D2-3E45-8D59-6D99644B4184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{045B86B0-86E5-34FA-B874-9EB7814460A1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
