@@ -1,6 +1,7 @@
 #include "GameServer.h"
 #include "Wlan.h"
 #include <chrono>
+#include <float.h>
 
 #ifdef _WIN32
 #else
@@ -28,8 +29,10 @@ int GameServer::LoadServerConfigInt(const char* file, char* key, int defaultValu
 float GameServer::LoadServerConfigFloat(const char* file, char* key, float defaultValue, float minimum, float maximum)
 {
 	char* value = GetConfig(file,key);
-	float result = value == NULL ? defaultValue : (float)atof(value);
+	float result = defaultValue;
+	if (value != NULL && sscanf(value,"%f",&result) != 1) result = defaultValue;
 	delete[] value;
+	if (result != result || result > FLT_MAX || result < -FLT_MAX) result = defaultValue;
 	if (result < minimum) result = minimum;
 	if (result > maximum) result = maximum;
 	return result;
@@ -398,6 +401,12 @@ void GameServer::Init() {
 	if (mHordeWaveDelay < 1) mHordeWaveDelay = 1;
 	else if (mHordeWaveDelay > 30) mHordeWaveDelay = 30;
 	mHordeWaveReward = LoadServerConfigInt(gameplayConfig,"horde_wave_reward",3250,0,32767);
+	mHordeHealthMultiplierPerWave = LoadServerConfigFloat(gameplayConfig,"horde_health_multiplier_per_wave",1.10f,1.0f,2.0f);
+	mHordeDamageMultiplierPerWave = LoadServerConfigFloat(gameplayConfig,"horde_damage_multiplier_per_wave",1.05f,1.0f,2.0f);
+	mHordeSpeedMultiplierPerWave = LoadServerConfigFloat(gameplayConfig,"horde_speed_multiplier_per_wave",1.02f,1.0f,2.0f);
+	mHordeHealthMultiplier = 1.0f;
+	mHordeDamageMultiplier = 1.0f;
+	mHordeSpeedMultiplier = 1.0f;
 	char* hordeRegroup = GetConfig(gameplayConfig,"horde_regroup");
 	mHordeRegroupStyle = hordeRegroup != NULL && stricmp(hordeRegroup,"base") == 0 ? 1 : 0;
 	delete[] hordeRegroup;
@@ -1989,7 +1998,7 @@ void GameServer::CheckCollisions()
 								float anglediff = fabs(fabs(angle+M_PI-person1->mFacingAngle)-M_PI);
 								if (anglediff <= 0.6f) {
 									person1->mState = DRYFIRING;
-									person2->TakeDamage(person1->mGuns[KNIFE]->mGun->mDamage);
+									person2->TakeDamage(GetHordeMeleeDamage(person1));
 									if (person2->mState == DEAD) {
 										UpdateScores(person1,person2,person1->mGuns[KNIFE]->mGun);
 									}
@@ -2016,7 +2025,7 @@ void GameServer::CheckCollisions()
 								float anglediff = fabs(fabs(angle+M_PI-person2->mFacingAngle)-M_PI);
 								if (anglediff <= 0.6f) {
 									person2->mState = DRYFIRING;
-									person1->TakeDamage(person2->mGuns[KNIFE]->mGun->mDamage);
+									person1->TakeDamage(GetHordeMeleeDamage(person2));
 									if (person1->mState == DEAD) {
 										UpdateScores(person2,person1,person2->mGuns[KNIFE]->mGun);
 									}
@@ -4094,6 +4103,11 @@ void GameServer::ResetRound(bool fullreset) {
 	if (mGameType == HORDE) {
 		mHordeSurvivalTime = 0.0f;
 		if (fullreset) mHordeWave = 1;
+		if (mHordeWave <= 1) {
+			mHordeHealthMultiplier = 1.0f;
+			mHordeDamageMultiplier = 1.0f;
+			mHordeSpeedMultiplier = 1.0f;
+		}
 	}
 
 	mRoundBit ^= 128;
@@ -4356,6 +4370,7 @@ void GameServer::ResetHordeWave() {
 	if (mGameType != HORDE) return;
 
 	mHordeWave++;
+	AdvanceHordeScaling();
 	mNumRounds++;
 	mRoundState = FREEZETIME;
 	mRoundTimer = (float)mHordeWaveDelay;
@@ -4446,12 +4461,34 @@ void GameServer::ResetHordeWave() {
 	Hash();
 }
 
+void GameServer::AdvanceHordeScaling() {
+	mHordeHealthMultiplier *= mHordeHealthMultiplierPerWave;
+	float maximumHealthMultiplier = 32767.0f/Person::mTSpawnHealth;
+	if (mHordeHealthMultiplier > maximumHealthMultiplier) mHordeHealthMultiplier = maximumHealthMultiplier;
+	mHordeDamageMultiplier *= mHordeDamageMultiplierPerWave;
+	if (mHordeDamageMultiplier > 32767.0f) mHordeDamageMultiplier = 32767.0f;
+	mHordeSpeedMultiplier *= mHordeSpeedMultiplierPerWave;
+	if (mHordeSpeedMultiplier > 3.0f) mHordeSpeedMultiplier = 3.0f;
+}
+
+int GameServer::GetHordeMeleeDamage(Person* attacker) const {
+	int damage = attacker->mGuns[KNIFE]->mGun->mDamage;
+	if (mGameType != HORDE || attacker->mTeam != T) return damage;
+	float scaledDamage = damage*mHordeDamageMultiplier;
+	return scaledDamage > 32767.0f ? 32767 : (int)(scaledDamage+0.5f);
+}
+
 void GameServer::RespawnPlayer(Person* player, int x, int y) {
 	bool isDead = (player->mState == DEAD)? true:false;
 	bool isActive = !(mRoundState == FREEZETIME);
 
 	EquipMeleeWeapon(player);
 	player->Reset();
+	if (mGameType == HORDE && player->mTeam == T) {
+		float scaledHealth = Person::mTSpawnHealth*mHordeHealthMultiplier;
+		player->mHealth = scaledHealth > 32767.0f ? 32767 : (int)(scaledHealth+0.5f);
+		player->mMovementSpeedMultiplier = mHordeSpeedMultiplier;
+	}
 
 	player->mX = x,
 	player->mY = y;

@@ -1,2 +1,1 @@
-CastleVonbrown tdm
-iceworld tdm
+de_dust2 horde

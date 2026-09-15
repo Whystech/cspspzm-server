@@ -70,5 +70,12 @@ horde_wave_delay = 3
 # horde_wave_reward: cash awarded after clearing a wave, range 0-32767.
 horde_wave_reward = 3250
 
+# Horde zombie scaling compounds once after each completed wave. Wave 1 uses
+# 1.0. Per-wave values are clamped to 1.0-2.0; effective health and melee
+# damage are capped at 32767, and effective movement speed is capped at 3.0.
+horde_health_multiplier_per_wave = 1.10
+horde_damage_multiplier_per_wave = 1.05
+horde_speed_multiplier_per_wave = 1.02
+
 # horde_revive_survivors: on revives eliminated CTs after a cleared wave.
 horde_revive_survivors = off

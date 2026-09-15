@@ -73,6 +73,7 @@ public:
 	int mMoveState;
 	float mSpeed;
 	float mMaxSpeed;
+	float mMovementSpeedMultiplier;
 	float mAngle;
 	int mHealth;
 	int mArmor;

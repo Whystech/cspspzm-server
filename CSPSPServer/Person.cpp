@@ -27,6 +27,7 @@ Person::Person(std::vector<GunObject*>* gunobjects, std::vector<Bullet*>* bullet
 	mOldY = mY;
 	mSpeed = 0;
 	mMaxSpeed = 0;
+	mMovementSpeedMultiplier = 1.0f;
 	mState = DEAD;
 	mStateTime = 0;
 	mAngle = 0;
@@ -257,7 +258,7 @@ void Person::Move(float speed, float angle)
 	if (!mIsActive) return;
 	if (mState == DEAD) return;
 	SetMoveState(MOVING);
-	mMaxSpeed = speed*mGuns[mGunIndex]->mGun->mSpeed;
+	mMaxSpeed = speed*mMovementSpeedMultiplier*mGuns[mGunIndex]->mGun->mSpeed;
 	mAngle = angle;
 }
 
@@ -661,6 +662,7 @@ void Person::Reset()
 	SetTotalRotation(M_PI_2);
 	SetMoveState(NOTMOVING);
 	mSpeed = 0.0f;
+	mMovementSpeedMultiplier = 1.0f;
 	mHealth = mTeam == T ? mTSpawnHealth : mCTSpawnHealth;
 	mArmor = mTeam == T ? mTSpawnArmor : mCTSpawnArmor;
 	if (mState == DEAD) {
@@ -759,7 +761,7 @@ void Person::ReceiveInput(Input input, float time) {
 			speed = 0.1f;
 		}
 		SetMoveState(MOVING);
-		mMaxSpeed = speed*mGuns[mGunIndex]->mGun->mSpeed;
+			mMaxSpeed = speed*mMovementSpeedMultiplier*mGuns[mGunIndex]->mGun->mSpeed;
 		if (mMovementStyle == RELATIVE1) {
 			mAngle = input.facingangle+angle;
 		}

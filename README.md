@@ -1,7 +1,6 @@
 # CSPSP Server
 
-This is the server application for [CSPSP](https://github.com/kevinbchen/cspsp), a homebrew game for the Sony PSP.
-If you want to download and run the prebuilt server application, see the [Releases](https://github.com/kevinbchen/cspspserver/releases) page.
+This is the server application for [CSPSP:zm].
 See [CSPSPServer/README.txt](CSPSPServer/README.txt) for instructions to run a server.
 
 > **Warning**: I created this project back in high school and didn't expect to open source it, so the code is messy and, to put it mildy, not well written. I would not use this as any kind of reference :)

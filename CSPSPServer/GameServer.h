@@ -109,6 +109,12 @@ public:
 	int mHordeWaveReward;
 	int mHordeRegroupStyle;
 	bool mHordeReviveSurvivors;
+	float mHordeHealthMultiplierPerWave;
+	float mHordeDamageMultiplierPerWave;
+	float mHordeSpeedMultiplierPerWave;
+	float mHordeHealthMultiplier;
+	float mHordeDamageMultiplier;
+	float mHordeSpeedMultiplier;
 
 	int mSpawnGunIndex;
 	int mInvincibleTime;
@@ -199,6 +205,8 @@ public:
 	void HandlePacket(Packet &packet, Connection* connection, sockaddr_in from, bool sendack = true);
 	void ResetRound(bool fullreset = false);
 	void ResetHordeWave();
+	void AdvanceHordeScaling();
+	int GetHordeMeleeDamage(Person* attacker) const;
 	void RespawnPlayer(Person* player, int x, int y);
 	void UpdateScores(Person* attacker, Person* victim, Gun* weapon);
 
