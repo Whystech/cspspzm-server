@@ -168,7 +168,12 @@ void GameServer::Init() {
 		}
 		s = line; // This was what the problem was! 
 		Gun gun = {};
-		int fields = sscanf(s,"%d %d %d %f %d %d %d %f %f %f %d %d %d %d %d %d %d %d %14s",
+		gun.mBulletImpactScale = 1.0f;
+		gun.mBulletImpactRed = 255;
+		gun.mBulletImpactGreen = 128;
+		gun.mBulletImpactBlue = 35;
+		gun.mBulletImpactFadeTime = 250.0f;
+		int fields = sscanf(s,"%d %d %d %f %d %d %d %f %f %f %d %d %d %d %d %d %d %d %d %f %d %d %d %f %14s",
 						&gun.mId,
 						&gun.mDamage,
 						&gun.mDelay,
@@ -187,21 +192,44 @@ void GameServer::Init() {
 						&gun.mBuyCategory,
 						&gun.mBuyTeams,
 						&gun.mMuzzleFlashType,
+						&gun.mBulletImpactType,
+						&gun.mBulletImpactScale,
+						&gun.mBulletImpactRed,
+						&gun.mBulletImpactGreen,
+						&gun.mBulletImpactBlue,
+						&gun.mBulletImpactFadeTime,
 						gun.mName);
-		if (fields != 19) {
-			gun.mMuzzleFlashType = 0;
-			fields = sscanf(s,"%d %d %d %f %d %d %d %f %f %f %d %d %d %d %d %d %d %14s",
+		if (fields != 25) {
+			fields = sscanf(s,"%d %d %d %f %d %d %d %f %f %f %d %d %d %d %d %d %d %d %d %f %14s",
+						&gun.mId,&gun.mDamage,&gun.mDelay,&gun.mSpread,&gun.mClip,&gun.mNumClips,
+						&gun.mReloadDelay,&gun.mSpeed,&gun.mBulletSpeed,&gun.mViewAngle,&gun.mCost,
+						&gun.mType,&gun.mFireMode,&gun.mPellets,&gun.mScope,&gun.mBuyCategory,
+						&gun.mBuyTeams,&gun.mMuzzleFlashType,&gun.mBulletImpactType,&gun.mBulletImpactScale,gun.mName);
+		}
+		if (fields != 25 && fields != 21) {
+			fields = sscanf(s,"%d %d %d %f %d %d %d %f %f %f %d %d %d %d %d %d %d %d %14s",
+						&gun.mId,&gun.mDamage,&gun.mDelay,&gun.mSpread,&gun.mClip,&gun.mNumClips,
+						&gun.mReloadDelay,&gun.mSpeed,&gun.mBulletSpeed,&gun.mViewAngle,&gun.mCost,
+						&gun.mType,&gun.mFireMode,&gun.mPellets,&gun.mScope,&gun.mBuyCategory,
+						&gun.mBuyTeams,&gun.mMuzzleFlashType,gun.mName);
+			if (fields != 19) {
+				gun.mMuzzleFlashType = 0;
+				fields = sscanf(s,"%d %d %d %f %d %d %d %f %f %f %d %d %d %d %d %d %d %14s",
 						&gun.mId,&gun.mDamage,&gun.mDelay,&gun.mSpread,&gun.mClip,&gun.mNumClips,
 						&gun.mReloadDelay,&gun.mSpeed,&gun.mBulletSpeed,&gun.mViewAngle,&gun.mCost,
 						&gun.mType,&gun.mFireMode,&gun.mPellets,&gun.mScope,&gun.mBuyCategory,
 						&gun.mBuyTeams,gun.mName);
+			}
 		}
-		if ((fields != 18 && fields != 19) || gun.mId != i || gun.mType < PRIMARY || gun.mType > GRENADE ||
+		if ((fields != 18 && fields != 19 && fields != 21 && fields != 25) || gun.mId != i || gun.mType < PRIMARY || gun.mType > GRENADE ||
 			gun.mFireMode < FIREMODE_SEMI || gun.mFireMode > FIREMODE_AUTO ||
 			gun.mPellets < 1 || gun.mPellets > MAX_PELLETS || gun.mScope < SCOPE_NONE || gun.mScope > SCOPE_HIGH ||
 			gun.mBuyCategory < BUY_CATEGORY_NONE || gun.mBuyCategory > BUY_CATEGORY_EQUIPMENT ||
 			gun.mBuyTeams < 0 || gun.mBuyTeams > (BUY_TEAM_T | BUY_TEAM_CT) ||
-			gun.mMuzzleFlashType < 0) {
+			gun.mMuzzleFlashType < 0 || gun.mBulletImpactType < 0 || gun.mBulletImpactType >= MAX_BULLET_IMPACT_TYPES ||
+			gun.mBulletImpactScale < 0.1f || gun.mBulletImpactScale > 10.0f ||
+			gun.mBulletImpactRed < 0 || gun.mBulletImpactRed > 255 || gun.mBulletImpactGreen < 0 || gun.mBulletImpactGreen > 255 ||
+			gun.mBulletImpactBlue < 0 || gun.mBulletImpactBlue > 255 || gun.mBulletImpactFadeTime < 1.0f || gun.mBulletImpactFadeTime > 60000.0f) {
 			cout << "Error: Invalid gun row in data/guns.txt\n";
 			fclose(file);
 			mHasError = true;

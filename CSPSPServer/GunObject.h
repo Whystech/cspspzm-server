@@ -4,6 +4,7 @@
 #include <math.h>
 
 #define MAX_GUNS 128
+#define MAX_BULLET_IMPACT_TYPES MAX_GUNS
 #define ZOMBIECLAWS 66
 #define FIREMODE_SEMI 0
 #define FIREMODE_AUTO 1
@@ -36,6 +37,12 @@ struct Gun {
 	int mBuyTeams;
 	char mName[15];
 	int mMuzzleFlashType;
+	int mBulletImpactType;
+	float mBulletImpactScale;
+	int mBulletImpactRed;
+	int mBulletImpactGreen;
+	int mBulletImpactBlue;
+	float mBulletImpactFadeTime;
 };
 //------------------------------------------------------------------------------------------------
 
