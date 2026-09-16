@@ -104,6 +104,7 @@ public:
 	int mBuyTime;
 	int mRespawnTime;
 	int mInfectionRespawnDelay;
+	int mOnlineInactivityTimeout;
 	int mHordeWave;
 	int mHordeWaveDelay;
 	int mHordeWaveReward;

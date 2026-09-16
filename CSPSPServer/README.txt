@@ -56,6 +56,8 @@ are a few short descriptions:
 Server-authoritative mode and bot settings are stored in
 data/gameplay_config.txt:
 
+"online_inactivity_timeout_ms" - established-session silence before disconnect
+                                   (10000-120000; default 30000)
 "infected_bot_count" - number of T/Zombie bots (default 1)
 "ct_bot_count"       - number of CT survivor bots (default 3)
 "round_freeze_time"  - freeze time before a round in seconds (0-10)

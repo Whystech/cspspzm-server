@@ -4,6 +4,10 @@
 # Client Options and client data files never overwrite this file. Invalid
 # numeric values are clamped to the ranges described below.
 
+# Maximum established-session silence before disconnect, in milliseconds.
+# Range 10000-120000. The client should use the same value in data/network.txt.
+online_inactivity_timeout_ms = 30000
+
 # Armor protection percentage, range 0-100.
 armor_damage_reduction = 30
 

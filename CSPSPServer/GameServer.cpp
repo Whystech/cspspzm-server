@@ -383,6 +383,7 @@ void GameServer::Init() {
 	mBotsEnabled = bots != NULL && stricmp(bots,"on") == 0;
 	delete[] bots;
 	const char* gameplayConfig = "data/gameplay_config.txt";
+	mOnlineInactivityTimeout = LoadServerConfigInt(gameplayConfig,"online_inactivity_timeout_ms",30000,10000,120000);
 	char* infectedBotCount = GetConfig(gameplayConfig,"infected_bot_count");
 	mInfectedBotCount = infectedBotCount == NULL ? 1 : abs(atoi(infectedBotCount));
 	delete[] infectedBotCount;
@@ -934,7 +935,7 @@ void GameServer::Update(float dt)
 		if (isDead) continue;*/
 
 		mUdpManager->mConnections[i]->timer += dt;
-		if (mUdpManager->mConnections[i]->timer > 10000) {
+		if (mUdpManager->mConnections[i]->timer > mOnlineInactivityTimeout) {
 
 			Packet sendpacket;
 			sendpacket.WriteInt8(REMOVEPLAYER);
